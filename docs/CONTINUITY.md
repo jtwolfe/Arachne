@@ -1,57 +1,33 @@
 # Continuity
 
-Compute, storage, and network are not enough. The fourth thing is **state**: sessions, a half-finished scene, a process in the middle of work, the fact that you were authenticated *here* four minutes ago. Storage can bring back bytes. It cannot bring back a moment of RAM. The web has to have a story for that moment that is not "hope the machine stays up."
+Bytes, sessions, and boots fail differently. HoloFS covers bytes. The rules tool covers whether a session is still allowed to see them. OS space covers the boot. Harmonics covers the case where the bytes and the person are not in the same room. GlassSpear covers what the room shows after the binds come back. Vikett covers the moves a person uses to step back or to switch scene. None of them covers another's failure by getting larger.
 
-## Leases and the clock
+## Names and moments
 
-Presence leases, session grants, snapshot order, and "is this social copy too old" all assume the strands agree roughly on *now*. A single time server is a place that can lie, and a place that can be unreachable on purpose.
+Deleting removes a name inside a volume. Content stays while a snapshot, a clone, or another name still points at it. That is retain. Forget is its own page, in the rules catalogue, walked on purpose. It may run on a clock the class was authored with. It may not run because an application exited, and it may not run against OS space because an application asked.
 
-The agreement we want is gossip among peers you already trust. Each machine keeps its own clock. The mesh compares skew with the peers it is willing to believe. Nobody is the source of time. There is enough agreement that "two minutes ago" and "two days ago" do not get confused. The record carries a signed time from the last proof; a surface checks that against its own clock plus the skew it has heard.
+Stepping back is a page too. User space and application space each have their own moments. An application cannot step user space back. A person cannot step OS space back unless maintenance pages are live for them.
 
-If the gossip is thin — you are alone, offline — you fall back to the device clock and you narrow the session as the proof ages. Wrong time should make the web cautious, not authoritative.
+## Sessions
 
-## What is allowed to be ephemeral
+A session is the set of binds the rules tool has walked for one subject on one device in one place, plus an expiry. It is not a process, and it is not a HoloFS volume.
 
-| Kind of state | When the machine dies | What rehydrates it |
-| --- | --- | --- |
-| File bytes | Nowhere, if the holo still has members | The volume, by content |
-| A scene on a glass | The pixels | GlassSpear, from the scene and the person still present |
-| An application grant | The grant | A new take, if the person is still here and the policy still says yes |
-| The presence lease | The lease | A new proof; an implausible gap escalates |
-| A visit's working set | The pack, if it was not yet flushed | Carrier's continuity pack plus the volumes it named |
-| The machine's own configuration | A snapshot of the last accepted machine | AIOS's reconstructible history, and the other boot slot |
+When a surface session ends, GlassSpear drops personal pages. The rules tool drops the mounts. Volumes remain, reclaim retain. The next proof may rebind the same application volumes if those pages still prune in. Processes are allowed to die. The writing is in the volume.
 
-Live processes are not sacred. Arachne would rather restart a player in the same scene than pretend a process migration is the product. The feeling of continuity is "the writing is where I left it, on a volume that is mine," not "the Unix process followed me down the hall."
+A stale proof or a failed Dialtone refresh does not keep yesterday's mounts open out of politeness. The prune runs on the facts it has. Mounts that required a fresher proof go away.
 
-## The steward
+## The other moment of the machine
 
-AIOS is how a single machine stays a machine without you becoming its administrator. A privileged agent is allowed real room: packages, layout, services, the shape of the box. The control is an envelope of conditions that can be checked without asking the model whether it feels finished. The human owns the highest layer and the brake. Enactment is history you can read, on that machine, not a silent mutation.
+OS space can hold two boot moments. The running one is what the device key booted. The quiet one is prepared only by a maintenance claim: content in, verified, not yet the boot. Overtone may have carried that content. Dialtone may have resolved the who it came from. Neither of them flips the boot. A commit page does, and only after whatever health check that page was authored to require. If the new moment is sick, the next start is the previous moment. Abandon is also a page. There is no third path where a model or an application writes the boot because it had a shell.
 
-The steward is not BuckyBoi and not a personality. Privilege is not a presence. The buddy is who the room sees. The steward is who changes the box when a condition says a change is allowed. Optional work agents, if you asked for them, file requests. They are not a second steward and not a second you.
+The machine's device key is what makes the quiet moment *this* machine's. Disks walked to hardware the place did not enroll do not become a boot of that OS space just because the bytes arrived. HoloFS can still read a holo. The rules tool will not walk OS binds for a device key the place does not know.
 
-In the web, the steward's dangerous buttons are Vikett pages. Stage an update. Commit it. Roll it back. Ask for a disk. Those pages are pruned by who is allowed to maintain *this* machine. A guest never sees them. A time-boxed maintainer sees them until the claim dies. The agent does not get a private back door that skips the catalogue.
+## Coming back
 
-## Updates and the other slot
+1. The device key boots OS space. No person is required for place-owned scenes whose pages need nothing but OS and place-owned application space.
+2. A person proves themselves, or they do not. GlassSpear shows place scenes either way.
+3. The rules tool walks user space only if that page is live.
+4. Each personal page waits on its own application bind. Remote sources wait on Dialtone and then Overtone, and fail closed.
+5. Vikett is how the person changes the scene from here. It does not replay a framebuffer from the last room.
 
-The recovery story is an A/B boot. Two roots. You run on one. The next system is prepared on the other. A health check decides whether the next boot is the new one or the one you already trust. Failure returns to the known slot without a person holding a USB in the driveway.
-
-HoloFS already thinks in moments. The inactive slot should be a moment the holo (or the machine's own snapshot) can stand up, not a tarball with a prayer. The update itself arrives as content — signed, addressed, fetched because a page said to fetch it — over the mesh, verified against a key the domain already trusts. Overtone can carry the bulk. Dialtone carries the decision. The steward only commits after the check. If the check fails, the take never becomes the boot.
-
-A household already has a smaller version of "the parent pushes, the child applies, the parent does not become the child's keyboard." That is the right social shape. Arachne's version is the same shape for system images: someone authorized to maintain may *ask* the machine to move to a signed moment. The machine applies it to the quiet slot and only then considers stepping across.
-
-## Soft history
-
-Because names can be removed without the bytes leaving the holo, a bad walk is usually a step back, not a funeral. The steward's reconstructible history and the holo's snapshots are the same comfort at two heights: one for the files, one for the machine that serves them. Forgetting remains explicit, on a clock you set, for chunks no moment still references.
-
-## A node returns
-
-A machine reboots, or you move to the next glass after a fault.
-
-1. The device key says this hardware is still itself.
-2. If you are there, a proof refreshes the lease. If you are not, the surface shows the house, not your private scene.
-3. Volumes mount from the holo. The last snapshot is the file continuity.
-4. GlassSpear rebuilds the scene from policy and presence, not from a hibernated framebuffer.
-5. Grants are re-taken. They are not assumed to have survived the gap.
-6. If this boot is the inactive slot and the health check has not passed, the next start returns to the slot that had.
-
-Nothing in that list requires a person to decide which disk, which IP, or which container runtime. Those are strand details. The person, if they are present, only notices that the room is theirs again — or, if the proof is stale or the jump was absurd, that the room is being careful.
+The result to aim at: the room is yours again, or it is carefully not, and in neither case did anyone pick a disk or a server.

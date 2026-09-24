@@ -1,83 +1,80 @@
 # Control
 
-The dangerous habit in a system this flexible is letting a model invent the next action. Voice-to-shell looks like magic and fails like a hole. A compositor is a closed machine. A volume grant is a closed machine. An update is a closed machine. The model’s job is to pick, not to author.
+Two catalogues. One shape. Only one of them exists as a project today.
 
-Vikett is that discipline, already shaped for a desktop: every legal move is a **page** a human wrote. A snapshot of the world **prunes** the catalogue down to the doors that are open. A referee **takes** one page and fills its slots from lists that already exist — enums, notches, never a free-invented number or a free-invented path. A driver **walks**. Silence is a correct outcome.
+**Vikett** is the control protocol for interaction. Legal moves are pages a person authored. A snapshot of the world prunes the catalogue to live doors. A referee takes one page and fills slots from enums. A driver walks. Silence is a result. Vikett does not emit a shell line, a compositor command it invented, or a path.
 
-Arachne keeps that shape and aims it at the whole web, not only at a window manager.
+**The identity and rules tool** does not exist yet. Arachne requires it, and requires that it be built in Vikett's image rather than as role bindings, allow-lists of filesystem paths, or a model with a tool-use loop. Its catalogue is claims on the three spaces, and the maintenance and lend pages around them. It is not a mode of Vikett unless, later, someone deliberately makes it one. The concept keeps them apart so that choosing a scene cannot be the same code path as granting a volume, even though both code paths must feel the same to the person: either a thing that was always legal happens, or nothing does.
 
-## The loop
+## Vikett's loop, unchanged
 
 ```text
-identity claims  +  site policy  +  live world
-                 │
-                 ▼
-        catalogue of authored pages
-                 │
-                 ▼
-              prune
-                 │
-                 ▼
-     referee: exact match, else a typed choice
-                 │
-         ┌───────┴────────┐
-         ▼                ▼
-       a take           silence
-         │
-         ▼
-   driver walks
-         │
-         ▼
-   HoloFS volume still allowed to refuse
+who is asking, and what is true
+            │
+            ▼
+    authored interaction pages
+            │
+            ▼
+          prune
+            │
+            ▼
+   lexical match, or a typed choice
+   among the labels still live
+            │
+     ┌──────┴──────┐
+     ▼             ▼
+   a take        silence
+     │
+     ▼
+ driver walks a driver that already existed
 ```
 
-BuckyBoi can say who is speaking. It does not walk. GlassSpear can say which surface is in the room. It does not invent a layout that was never a scene. The application can publish the moves it knows how to perform. It does not receive a shell. The steward can propose a heal or an update only as a page the catalogue already contains.
+In Arachne the drivers are small and named:
 
-## Where this sits
-
-Identity says who you are and which claims you carry. The application's pages say what that application is capable of. The domain's policy says which of those capabilities are even legal here — guest, household, owner, a maintainer on a clock. Vikett is the interpreter between those three. It does not own the rules. The site owns the rules. Vikett applies whichever policy belongs to the surface you are touching.
-
-The walk lands on a volume. That is the second interpreter, and it is stricter: storage does not trust the referee. A take that asks for a path the grant does not include does not happen, even if something upstream was wrong. This is the difference between a menu that *asks* the app to behave and a fabric that *will not serve* the bytes.
-
-## Applications, privileged by specification
-
-The usual container starts from almost nothing and punches holes. That is a good instinct and a bad daily experience, and it still trusts the workload with whatever was mounted in.
-
-Arachne starts from a **specification**: the application declares the volumes, the talking-to-others, and the moves it needs. The declaration is signed. The domain verifies the signature, checks policy, and either mints a session or does not. The application then runs with that grant and no other. "Is it contained?" is the wrong question. "Was it authorized, and is the authorization still what is being enforced?" is the right one.
-
-For software you ship, the specification can travel with the application. For software you do not, nobody has automated the honest version of "read the source and emit the lock." Static guesses miss what the program only does at runtime. A learning pass can watch a run and draft rules. The piece worth building is the merge of those two into one profile that does not over-grant — and only as a tool for applications you are willing to stand behind, not as a promise that every binary on the internet will grow a perfect policy by itself. Existing mandatory-access machinery can enforce a finished profile. It will not author one from a build, and Arachne should not pretend otherwise.
-
-Old applications that only understand a filesystem get a familiar tree projected for them. Opens and reads are still checked. New applications do not share files to talk to each other. They use typed doors: each side named what it produces and what it consumes, and the bus only connects them when both grants match. The bus is itself just another volume with a protocol. One policy engine, two kinds of noun — bytes and messages.
-
-The catalogue must stay small. A few dozen legal moves, pruned hard, is a selector. Hundreds of moves is a search engine, and search engines wander. If a desire does not fit a page, the answer is silence or a request that a human author a page. It is not a model writing a new page in the moment.
-
-## Compound speech
-
-"Switch to the film and make it full screen" is two takes. A generated script that does both in one breath is how you get actions the person did not quite ask for. Vikett already treats compound speech that way. The rest of Arachne should too: one authorized move at a time, even when the sentence was lazy.
-
-Amounts are notches — a little, a lot, the next scene — not a model-chosen percentage. Slots are lists. "Set it to 37" when the list does not contain 37 is a refusal you can explain, not a guess.
-
-## System moves are pages too
-
-Launching is not the only walk.
-
-| Kind of page | Examples | Who may see it after prune |
+| Take | Driver | Does not |
 | --- | --- | --- |
-| Scene | kitchen, guest mode, lock private | Whoever the room policy names |
-| Application | open, save, talk to a named peer app | The person, inside that app's grant |
-| Volume | lend, revoke, snapshot, step back | The owner of the volume; sometimes a delegate |
-| Household | grant time, lock a child system, release a member | The parent domain, not the guest |
-| Steward | stage an update, commit a boot, roll back, ask for a disk | The machine's owner, or a time-boxed maintainer |
-| Identity | present a card, refresh a social copy, end a lease | The person, on a device that can prove them |
+| Change or apply a scene | GlassSpear | Mount storage |
+| Application action inside a page | That application, inside its already-bound volume | Reach user space or OS space |
+| A storage claim | Hand the typed claim to the rules tool | Talk to HoloFS itself |
+| Something with no page | Nothing | Ask a model to write a page |
 
-A maintainer does not get a shell because they are trusted. They get the steward pages their claim includes, for the hours the claim lasts. When the claim ends, those pages prune out. That is the same mechanism as a guest who cannot see mail.
+Compound speech is more than one take. "The writing, on the other glass" is two pages or it is silence. Amounts are notches the page defined. Slots are enums. A referee that emits text is the wrong referee. If a model is used, it is a decision model: the live labels in, a choice or a refusal out. It sees labels, never a socket.
 
-## The referee
+Vikett's existing discipline stays: guests change the legal set, pixels are not pages, and an exact alias can be matched without a model at all. Paraphrase is the only reason to call a model, and a wrong walk is worse than silence.
 
-Exact wording can be matched without a model at all. Paraphrase is where a decision model earns its place: state in, a typed choice among the *live* pages out, no tokens that could be a command. It sees labels, not the driver, not the disk, not a raw compositor socket. If it is unsure, it stays silent. A wrong walk is worse than nothing.
+## The rules tool, not yet defined
 
-This is the use of a System One model — a chooser, a scorer, a yes-or-no — not a writer. Generation remains available to people who are *authoring* pages and specifications, offline, with review. It is not on the path between a sentence and a side effect.
+What Arachne specifies is the contract, not the program.
 
-## What "root" means
+**Inputs.** A typed claim, as in [SPACES.md](SPACES.md). A person-proof or a machine-proof. The place. The live facts that pruning needs: is a person present, is this a guest session, is a maintenance window open, does this application already hold exclusive access, is Dialtone up, is the named snapshot still a snapshot.
 
-Root is not a person and not a vibe. It is a claim a domain issues, and it only covers the moves that domain put in the owner or maintainer set. A person can be root on the interaction glass of their house and a guest on the servers of a building in the same afternoon, with the same identity record. The web feels continuous because the proof was continuous. The power is local because the catalogue was local.
+**Catalogue.** Authored pages, at least:
+
+- bind user space for this person in this place
+- bind application space for a page id
+- project a named user slice into an application page
+- snapshot, step back, forget
+- lend, revoke
+- prepare an OS moment, commit it, abandon it
+
+No page is created because an application requested a permission at runtime. New capability is a person editing the catalogue, then a later session pruning the new page in. That is the same rule Vikett uses for a new door in the house.
+
+**Outputs.** Walk, deny, or silence. A walk is an instruction to HoloFS and, if the source is remote, to Harmonics, in that order of authority: no Dialtone session for a claim that is not being walked, no HoloFS bind for a session that failed, no mount returned to GlassSpear or to the application until HoloFS accepts.
+
+**Non-outputs.** A shell. A path outside the volume. A new identity. A rewritten rule. An explanation the model composed and some other component is expected to execute.
+
+The tool is the binder between identity and HoloFS. Vikett is the binder between a person's intent and drivers. GlassSpear is a driver and a source of "which page ids are on this surface." Harmonics is a driver for "the source is not local." HoloFS is the driver for "make this volume real and small."
+
+## Why the tool is not Vikett
+
+Vikett pages are things a person *does*: show, focus, stop, switch. Claim pages are things a session *is allowed to hold*. Mixing them would mean a successful utterance could carry a mount as a side effect of phrasing. The pattern is the same so that both stay auditable and closed. The catalogues are different so that interaction and authority can change on different clocks. You can add a scene without granting a volume. You can revoke a lend without changing how the glass is operated.
+
+A later design may put both catalogues behind one implementation. Arachne does not require that, and it forbids either catalogue from growing entries by themselves.
+
+## Rules are per place
+
+The catalogue is not global. A home, a building, and a machine you own each have a catalogue. The person's proof is portable. The pages are not. Guest in a building means that building's prune, not a reduced copy of the person's home catalogue. Someone allowed to maintain a machine sees OS pages there and does not see them in a building that did not grant maintenance. The identity tool loads the catalogue of the place the surface belongs to. It does not ask the person's home to authorize the building.
+
+## What "root" is
+
+Root is not a user. It is the set of OS-class pages being live for this subject, in this place, now. It expires when the prune says those pages are gone. An application cannot inherit it. User space cannot contain it. There is no flag on a volume that means root, because OS space was never bound into the session that would read the flag.

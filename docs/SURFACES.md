@@ -1,56 +1,43 @@
-# Surfaces
+# GlassSpear
 
-A surface is anywhere attention lands. A wall glass, a monitor on a desk, a phone in the hand, a buddy drawn over a desktop that still has windows. Arachne cares that these feel like one arrival, not four products that each have a login.
+GlassSpear is how Arachne shows itself. Environmental computers — the glass in a kitchen, by a bed, in a room — are not laptops. Desktop management should disappear on them. A place that knows who is present, and which surface they are near, *is* the interface.
 
-## GlassSpear — the room
+Arachne does not redesign GlassSpear. It says what a scene is allowed to do to storage, identity, and action.
 
-Environmental computers are the ones that stay on so a room can be useful: kitchen, bedside, living room, hall. They are not "my laptop." They should not grow a desktop.
+## Surfaces, scenes, pages
 
-GlassSpear treats them as surfaces that show **scenes**. A scene is a named layout and the pages that belong in it, for the people actually there. Shared house content and a personal page can be on the same glass without becoming the same session. If two people are in the room, private pages do not get casual. If you leave, the glass returns to the house, or to whoever is still there.
+| Word | Meaning |
+| --- | --- |
+| Surface | A display endpoint. It runs a real system underneath. The product is not a new kernel on that box. |
+| Scene | A named layout and the pages that belong in it. Not a pile of windows someone last left open. |
+| Page | A slot in a scene. Often a web app. Sometimes something native. A page is also a Vikett role: the application id that application-space claims use. |
+| Profile | What a person may see on glass in this place: which scenes, which private pages. The profile is a view of rules, not a home directory. |
+| Presence | Who is near which surface. It selects scenes. It does not unlock a key by itself, and it does not bind a volume. |
 
-Presence is the interface. Occupancy and identity decide what appears, so the daily path has no login theater. Voice and a thin remote are how you ask for a different scene. They are not how the system guesses a shell command. The ask is handed to Vikett as a choice among scenes that exist.
+Shared pages and personal pages can share a surface and must not share a volume. The subject on the claim is different. A house timer is the place's application space. A person's writing is that person's application space. GlassSpear lays them out. HoloFS keeps them apart. The rules tool is what refused to bind the writing into the house volume.
 
-Most of what a scene shows can be a page — often a web app — because the content is not the precious part. The precious part is the holo behind it, and the policy that decided this page was legal on this glass for this person. The layout engine underneath can be an ordinary compositor. The product is the control of attention, not a new window manager for enthusiasts. A dev machine and a game machine are out of scope on purpose. Those stay workstations.
+## What happens when you arrive
 
-## BuckyBoi — the workstation
+1. Something in the place asserts that a person is at a surface. How it senses is GlassSpear's concern. Arachne only requires the assertion to be a subject the identity tool can check, not a guess the compositor acts on.
+2. The identity tool evaluates the proof under this place's catalogue. No account is created. Guest, resident, or someone allowed to maintain the machine are different prunes of the same catalogue.
+3. For every page the chosen scene wants to show, GlassSpear asks for a bind of application space. It does not mount anything itself. Pages whose claims do not walk are not shown. A scene with holes is acceptable. A scene that fills holes from user space or OS space is not.
+4. Vikett remains the way a person *changes* what is showing. "The other scene." "This page, on the other surface." Those are authored pages. GlassSpear applies the take. If the take needs a bind that is not live, the rules tool says so and the glass does not improvise.
 
-Some machines are supposed to have windows. On those, the presence should still be a person, not a password dialog.
+Leaving a surface drops the session's mounts. The next person does not inherit them. The glass returns to a scene whose subject is the place, or to whoever is still there.
 
-BuckyBoi is that presence: a small overlay that can see, hear, and take a gesture, for one person or several, and that fails closed. Enrolled people can wake listening and sensitive actions. Anyone else gets a machine that does not obey. The buddy does not walk a door. It tells Vikett and the session layer who is standing there. It is not the identity record and it does not store the long-term key of the household.
+## What GlassSpear will not hold
 
-This split matters in a room with both kinds of computer. The wall glass is GlassSpear. The desk is a workstation with a buddy. You are the same person on both because both consumed the same proof. They do not each grow a user database.
+- OS space. The machine boots and is maintained outside the scene model. A scene has no path into it.
+- User space, as a tree to browse. Personal pages get application volumes and, only through a projection page, a named slice.
+- The rules. GlassSpear can know which scene is appropriate. The catalogue of what that implies for storage lives in the rules tool, modeled on Vikett, not in a layout file that happens to list filesystem paths.
+- The packet path. If a page's volume is remote, GlassSpear still only asks for a bind. Harmonics is underneath the bind, not a feature of the scene.
 
-## The phone
+A workstation that still has windows is out of scope for GlassSpear, and it is out of scope for this concept. Arachne does not require a second presence product on the desk. If a person uses a machine that is not environmental glass, that machine is still the same three spaces and the same rules. It simply does not pretend to be a scene OS.
 
-Two roles, and they should not be melted together.
+## Two people, one glass
 
-**Carrier** is the vault. It pairs machines, holds the key, presents claims, and eventually carries a continuity pack for a visit. You can put every other device in the house to sleep and still prove yourself with this one. It does not try to be the window manager of the kitchen.
+Both are subjects. The surface may show a shared scene plus, if the rules allow, a personal page for the person the surface considers primary. The other person's application volumes are not mounted. Private pages do not appear because a microphone heard a name. If the place cannot decide a single subject cleanly, it shows only pages whose subject is the place. That failure mode is a scene, not an error dialog, and not a merge of volumes.
 
-**glass**, the phone pane, is the surface you hold. It is the assistant you raise when the room has no glass of yours, or when the thing you need is private enough that a wall is the wrong place to show it. Long-press, ask, put away. It is a scene with one viewer, not a second copy of the house.
+## A page is not a grant
 
-A pocket vault that silently opens because it recognized the office Wi-Fi is a failure. Proximity can be a hint. It is not an unlock. Unlock stays a proof on the device.
-
-## What shows where
-
-| You are… | The surface should… | It should not… |
-| --- | --- | --- |
-| Alone in the kitchen | Bring your morning scene to the nearest glass | Mirror your private pages onto every glass in the house |
-| With a guest | Keep shared scenes, hide private modules | Explain the guest's presence by creating them an account |
-| At a desk | Let the buddy gate listening, leave the windows alone | Turn the workstation into a kiosk |
-| In a strange building | Show only what that domain granted | Cache your home scene on their disk "for convenience" |
-| Offline, on your own laptop | Open a narrower local session from the signed record | Pretend the lease was checked |
-| Handing a child a machine | Apply the household domain even at school | Require the parent to be reachable for the rules to exist |
-
-## Hand-off
-
-Walk from the kitchen to the desk and the scene should follow only if the desk is a surface that is allowed to show it. Walk out of the house and the lease on the kitchen glass should lapse. Pick up at the office and you are in a different domain; the hand-off is a new proof against the same record, not a remote desktop of your kitchen.
-
-Task context — the writing you were in the middle of — can follow you when the volume is yours and the new place's policy allows that application. The pixels do not have to follow you. The volume does. GlassSpear recreates the scene. It does not stream a framebuffer across the web as the main idea.
-
-## Sensing, and the line it will not cross
-
-Cameras, radar, a microphone, a voice match: these are how a room avoids asking you to type. They are also how a room becomes a surveillance product if the raw signal leaves.
-
-The rule is local match, minimal claim outward. The sensor decides "this enrolled person" or "someone unknown" or "more than one." What leaves the room, if anything leaves, is a claim already in the identity model — present here, now — not the picture and not the audio. Speaker recognition is a hint. It is not the lock. The lock remains the key you unlock, on a device or with a proof the domain asked to escalate to.
-
-BuckyBoi's enrollment lives with the people of that machine. GlassSpear's notion of who is in the house has to agree with it, and with Carrier, or the web will feel like three houses. One enrollment, projected. Not three.
+GlassSpear authors scenes as layouts and content. Vikett authors interaction pages, including "show scene" and "focus page." The rules tool authors which of those are allowed to bind storage. The three lists are written by people, reviewed as lists, and kept small. A scene file that embeds a filesystem path, a shell line, or a Dialtone address with a key in it is not a scene. It is a hole. Content references a page id. The page id is what the claim's role slot carries. Resolution to a volume happens only after a walk.

@@ -1,66 +1,50 @@
 # Identity
 
-Identity is the spine. Every other component already assumes a "who." Arachne's job is to make that who the same who, in every strand, without making a single company or a single server the place where who lives.
+Arachne needs a way to answer three questions without turning them into one account.
 
-## More than a keypair
-
-A keypair is the proof mechanism. It is not the identity.
-
-The identity is a **record**: a public key, claims, delegations, and enough history for a stranger's building to know what it is looking at. The record lives somewhere durable — a volume on a holo you control. You do not carry the record around as a blob you might lose. You carry an **address** that resolves to it, and the means to prove you still speak for the key inside it.
-
-That address is a Dialtone name. When you walk into a place that has never enrolled you, you present the address. The place fetches the record from your strand, or from a copy someone you trust is holding, and checks the signature. No account is created. There is no global directory you had to join.
-
-If the place cannot reach your strand, it can still verify a signature it can see. Freshness is the part that suffers, not authenticity. See continuity for how stale proof becomes a narrower session rather than a hard failure.
-
-## Person, device, domain
-
-Three facts are always separate. Collapsing them is how systems become either centralized or unsafe.
-
-| Fact | Question it answers | What holds it |
-| --- | --- | --- |
-| Person | Are you the one this record names, right now? | Your key, unlocked locally, pointed at by the address you carry |
-| Device | Is this hardware a machine some domain has enrolled? | A device key that never leaves that machine, born when the machine is first trusted |
-| Domain | What may that person do on the machines *this place* is responsible for? | Policy local to the home, the household, the building, the lab |
-
-Carrier holds the person's ability to prove the record. It is the vault in your pocket: pairing, claims, and later the continuity pack that lets a visit rehydrate. It is not a mesh node and it does not render the house.
-
-A device key is how a work machine can be "a real work machine" without knowing your face, and how a stranger's glass can let you stand at it without swallowing your long-term key. The session minted for those few minutes is signed by you and carries the device's attestation. Revoke the device and its sessions die. Rotate yourself and the hardware enrollment is untouched.
-
-The domain never becomes you. A household, an office, a building each publish what guest, staff, owner, and maintainer mean *there*. An administrator with a higher claim can change that policy. They are editing the building, not your record. They can refuse a claim of yours. They cannot author one in your name.
-
-Hearth is a small, already-real version of domain authority: a parent and a child system, rules that apply on the child's machine even when the parent is offline, and an explicit release when someone leaves the household. Arachne generalizes that pattern past screen-time. The household is one domain. The office is another. Your own machines are another. You cross them with one record.
-
-## Presence, not possession
-
-A credential you only possess can be stolen and used from anywhere. A record that can be *exercised* in two places at once is not a person.
-
-The rule is a **presence lease**. When you prove yourself, the record notes where and when, and only one lease is live. A second use elsewhere does not silently succeed.
-
-Distance and time matter. Being seen at home, and then a minute later in a building across the city, is not an automatic ban. It is an escalation. The first proof might be enough when the jump is plausible. An implausible jump asks for something you are holding — the pocket vault, a second factor — before the place restores a full session. Until then you get the degraded version: read, shared surfaces, nothing personal, nothing with root. The lease also expires. Walk out and do not prove yourself again, and the next surface starts clean. You cannot be stranded by a lease you forgot to close; you can be made to prove yourself again.
-
-BuckyBoi is the sensing end of this on a workstation: face, voice, gesture, more than one person in view, fail closed. It identifies. It does not decide the walk. GlassSpear is the sensing end in a room: who is near which surface. Carrier is the proof you still have when those sensors have nothing local to match against except what you unlock.
-
-Biometrics stay in the convenience layer. They are noisy, they leak forever, and they cannot be rotated. They unlock a key on a device you are touching. They are never sent off as the credential. Stolen video of your face gets an attacker a locked door, not your record.
-
-## Social copies
-
-This is deliberately close to handing someone a card, and deliberately not a replay of keysigning parties.
-
-Your record at rest is encrypted. People you actually know may hold a copy. When you are in their house and your home strand is dark, they can verify you from what you already gave them. The signature still has to check. The copy is a snapshot, so it carries a version. Too old, and the place marks the session degraded instead of pretending the card is current.
-
-The live record on your holo remains the source. Copies are the offline fallback, updated when you next meet a strand that can refresh them. They are not the primary path, which is the mistake that made webs of trust something only specialists used. Refresh wants to be a consequence of use, not a chore.
-
-## What an application is allowed to know
-
-An application does not get your identity. It gets a session, and a volume, and a set of moves. The session says which person authorized it and which domain allowed it. The application's own key is not you. You can revoke the application's grant without rotating yourself. See [CONTROL.md](CONTROL.md).
-
-## Failure, on purpose
-
-| Situation | What should happen |
+| Question | Answered by |
 | --- | --- |
-| Pocket vault lost | You recover from a path you set up before, not from a vendor. Devices you still hold can be re-proved. The lost vault's sessions die. |
-| Photo of your face leaks | Nothing cryptographic rotates, because the face was never the key. Local unlock on a stolen device still needs the device and its own gate. |
-| Home holo offline | Signature checks. Social copy if you have one. Session narrows with age. |
-| Two places at once | Second place escalates or degrades. It does not clone you. |
-| Domain admin is hostile | They can lock you out of *their* machines. They cannot rewrite the record on your strand. |
-| You revoke a claim while a place is offline | That place is wrong until it reconnects, which is why stale proof is narrower, not equal. |
+| Are you this person, now? | A proof: an address, a signature, a key unlocked locally |
+| Is this hardware a machine this place enrolled? | A device key that stays on the machine |
+| What may that pair do here? | The place's catalogue, pruned and walked by the rules tool |
+
+The tool that checks proofs and walks claims **is not defined**. Its shape is defined, in [CONTROL.md](CONTROL.md), because Vikett already showed that closed catalogues beat invented actions. Identity is not a component you can clone from an existing repository and drop in. It is the missing lock.
+
+## The record
+
+A keypair is how you sign. The **record** is who a place thinks it is verifying: a public key, claims, delegations, a version, a time of last proof. The record lives in a volume that only the identity tool can bind. It is not in OS space (the machine must not own you) and not in the user-space mount (applications must not edit you).
+
+You do not carry the whole record as the only copy. You carry an **address** Dialtone can resolve, and the means to prove you still speak for the key. A place that has never seen you fetches the record or reads a copy it was given. It verifies the signature. It then applies *its* catalogue. No account is written.
+
+[Carrier](https://github.com/jtwolfe/carrier) is one experiment in holding that proof on a phone. Arachne does not depend on Carrier, its pairing flow, or its roadmap. Any carry that can present the address and unlock the key is enough for the concept. A machine you are touching may also hold an unlock for a key, if the rules of that machine say the key may live there. Biometrics, if used, only unlock. They are not the record and they are not sent as the credential.
+
+## Person and machine stay apart
+
+The machine boots from OS space with its own device key, before anyone arrives. That key is how maintenance claims know they are on the enrolled machine and not on a copy of the disks. It is not a person.
+
+When a person proves themselves, the rules tool mints a session that names both: this person-proof, this device, this place, this expiry. Application claims and user-space claims hang off that session. They are not hung off the login name, because there is not one.
+
+A place you do not own can accept your proof for a guest prune without storing your key. Your key can unlock on hardware you do not own for the length of the session without that hardware becoming your carry. When the session ends, the place keeps an audit of which pages were walked, not a replica of user space, unless a claim explicitly lent or snapshotted something. Audit is OS space or a place-owned volume. It is not your record.
+
+## Prune inputs that identity must supply
+
+The rules tool is useless if "who" is a string. These are the facts a proof has to be able to support, and no others are required by the concept:
+
+- subject id (the public key, not a display name)
+- which place-authored claims this record carries, if any (resident, maintainer-until, nothing)
+- version and signed time, so a stale proof can be pruned harder
+- whether this session's key was unlocked on a carry the place accepts, or only on the local machine
+
+Display names, avatars, and "the admin role" are not identity. Resident versus guest versus maintainer are claims a **place** decided to honor, stored as what the catalogue prunes on, not as a global role.
+
+## What a place must not do
+
+- Edit the record. It can refuse a claim. It cannot author one in the person's name.
+- Treat presence as the proof. GlassSpear may assert that someone is at a surface. The identity tool still requires a proof the catalogue accepts before user space or personal application space binds. A shared scene whose subject is the place may show without a person. A personal page may not.
+- Collapse every machine the person touches into one trust domain. Dialtone reachability is not enrollment. Enrollment is an OS-class or place-class page that was walked when the machine joined, and it can be revoked.
+
+## When the proof is thin
+
+Offline, or home unreachable: the signature still checks if the record or a copy is present. The rules tool's prune treats age as a fact. Fresh enough, the usual pages for this place. Older, fewer pages — typically no user-space bind, no lend, no maintenance, application space only if that page was authored as safe without a refresh. The concept does not pick the timeout. It requires that staleness narrows the catalogue rather than failing closed into "make a local account so they can work."
+
+An implausible second session — the same subject proving somewhere else in a way the rules call impossible — is also a prune input. The second place does not become a second copy of the person. It walks a smaller catalogue, or it denies, until a proof the catalogue counts as strong enough. Arachne does not specify the physics of "implausible." It specifies that the rules tool must have a slot for it, and that the slot cannot be filled by an application.

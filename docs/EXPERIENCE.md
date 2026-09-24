@@ -1,69 +1,31 @@
 # Experience
 
-Arachne is a path for a person, not a stack diagram that happens to have users. This is that path. The components are named only where the feeling would be dishonest without them.
+What a person should be able to do if HoloFS, Harmonics, GlassSpear, and Vikett are actually one environment, and if the missing rules tool behaves. No new account, no shared drive, no command anyone had to invent in the moment.
 
-## Arrival
+## Home, morning
 
-You come into a place that already has computers. Some are glass on a wall. Some are machines people sit at. Some are disks and small servers nobody looks at.
+The glass in the room is a GlassSpear surface. Before anyone is there it shows a scene whose subject is the place: whatever pages the house is allowed to run with no person attached. Those pages have application space owned by the place, if they need storage at all. They do not have user space.
 
-The place does not ask for an account. It asks a smaller question: *can you prove a record, and does our policy honor anything in it?*
+You arrive with a proof. The rules tool, still only a contract, prunes the home catalogue with that proof. You are a resident here, so the user-space page is live. HoloFS binds your user volume into the *session*, not into the glass and not into any application. GlassSpear switches the near surface to a scene that includes your pages. For each of those pages the rules tool walks an application-space claim. The writing tool sees its volume. It does not see the system, your documents, or the house timer's volume.
 
-If you live here, the answer is boring. You were here this morning. The lease is fresh. The glass nearest you takes your scene. Shared glass stays shared if someone else is in the room with you. Private pages do not appear on a glass that is not yours to look at.
+You say to put the writing on the other surface. Vikett takes two pages or it takes none: this application, that surface. GlassSpear moves the page. The volume does not get copied onto the second machine unless the claim's source says the volume is remote and Harmonics is required to reach it. If both surfaces are on one holo, the bind is local and Dialtone stays quiet.
 
-If you do not live here, you are a guest. The record you present is still yours — the building cannot edit it — but the building's default is small. You can see the shared surfaces. You cannot touch the root of anything. You cannot see someone else's private volume. Leaving ends the session. The building keeps an audit of the grant, not a copy of your life.
+You delete something inside the writing tool. The name disappears from that application volume. The holo still has the previous moment. Putting it back is a Vikett page, stepped by the rules tool, not a file manager pointed at user space.
 
-If you work here, the same proof carries a claim this place already decided to trust. Staff is not a second identity. It is this place recognizing a claim on the identity you already have.
+## A building that does not know you
 
-A third party who maintains the systems might hold a claim that expires. When it expires, the doors that claim opened are no longer in the catalogue. Nobody has to remember to delete an account. The account was never the object.
+You present an address. Dialtone resolves it. The building reads a record it can verify and then throws away every home assumption. Its catalogue's guest prune has no user-space page, no maintenance page, and no personal pages that were not published for guests. GlassSpear shows place-owned scenes. If you are someone the building's claims call staff, those pages prune in, still without the building storing your user volume. Staff is a claim on your record that *this catalogue* was authored to recognize. It is not a second identity.
 
-## The carry
+A person maintaining the building's machines has OS pages live, on those machines, until the claim says otherwise. They still do not receive your application volumes. OS space and user space are different classes. Standing in both catalogues in one day does not merge them.
 
-Identity is not "logged in on your laptop." You can turn every machine you own off and still be able to prove yourself, because the proof rides with you — a phone, or something with the same job. The phone is not the house and it is not a server. It is the ability to show an address and unlock the key that signs for that address.
+## Not here
 
-Biometrics live here, on the device in your hand or the device you are touching. They open a key. They are not the key. A photograph of your face is not a credential that can be rotated; a key can. If the proof looks wrong — you were across the city two minutes ago — the place does not pretend everything is fine. It narrows what you can do until a second proof lands. You are not locked out of existing. You are locked out of being casual.
+The network is down. Local members of the holo still serve volumes already on this machine. Dialtone cannot refresh the record and cannot fetch a remote source. The rules tool narrows. The glass can keep showing pages whose volumes are local and whose pages allow a stale proof. It does not invent a cache of your home directory. When Dialtone returns, the prune runs again. Mounts that are no longer legal drop.
 
-Someone you trust can hold an encrypted copy of your record, the way they might hold a card you handed them. If your home is unreachable, their copy can still be checked. If the copy is old, the place treats it as old. Trust moves through people when the network cannot.
+## Someone you chose to show a thing
 
-## Work, without a desktop
+A lend is a page. The rules tool walks it. HoloFS wraps the volume. Dialtone can find the other person. They bind, on their side, only if *their* place's catalogue has a page for accepting that lend. Overtone moves bytes only if the lend was a moment to keep rather than a live read. You revoke. The wrap dies. Their mount fails. Your user space never became theirs.
 
-On the glass around a home, you should not manage windows. You should not hunt for an app. A scene is a layout that already knows which pages belong in this room for this person. Cooking, a film, a guest in the house, the lights down: these are scenes, chosen because you asked or because the room could see that the conditions were met. Asking is speech or a glance at a thin remote. It is not a launcher full of icons unless you are on a machine that is still a workstation.
+## What you should not have to know
 
-A workstation is allowed to still be a workstation. Arachne does not confiscate a desktop from someone who is writing code or playing a game. On that machine the presence is smaller: a buddy that can tell who is in front of it, and a gate on listening and on anything sensitive. The catalogue of moves is the same idea as in the kitchen. The surface is just more traditional.
-
-The phone you hold is a third kind of surface. It is the pane you take into a room that has no glass of yours, and it is the vault that makes arrival possible. It is not where the house stores itself.
-
-## An application
-
-You start something — a tool for writing, a player, a thing that talks to a machine in another room. You do not grant it "access to your files." It has its own place in the holo, created for it, sealed to it, bound to you. What it may do is a list someone authored: open this, save there, speak to that other application through a typed door, never by rummaging in a shared folder.
-
-If it is old and only understands ordinary files, it sees a familiar tree. The checks still happen underneath. If it asks for something outside the list, the answer is no, from the storage itself, not from a hope that the sandbox holds.
-
-If it misbehaves inside a grant you really did give it — it deletes what it was allowed to write — the name goes away and the earlier moment is still in the holo. Undo is a property of storage, not a feature of the application.
-
-You walk away. The grant was for this session. It does not linger on the glass you left.
-
-## Someone else's building
-
-You are allowed to be a guest without becoming a user of their system. Your record stays on a strand you control. Their servers, their interaction glass, their maintenance consoles are a domain with its own root of trust. They can refuse a claim. They cannot forge one. An administrator there changes *their* policy. They do not edit you.
-
-Two authorities are always in play, and they must not be collapsed:
-
-- **You** prove you are the person the record names.
-- **The machine** proves it is a machine this domain enrolled.
-- **The domain** decides what that combination may touch.
-
-A work laptop can be trusted hardware without ever storing your face. Your face can unlock a session on hardware you do not own without that hardware keeping your long-term key.
-
-## When the web is down
-
-Offline is not a special mode you enable. It is the web with strands missing.
-
-The signature on your record still verifies. The place can still match a live proof against what the record says about you. What it cannot do is ask the rest of the web whether you revoked a claim an hour ago, or whether you are also "present" somewhere else. So the session is deliberately thinner, and if the last fresh record is older than the place is willing to trust, it gets thinner again. Reconnecting is not a login. It is the lease and the claims becoming current.
-
-## When something breaks
-
-A disk dies. The holo was already more than that disk. You plug in a replacement when you have one. You do not reconstruct your life from a backup drive named with a date.
-
-A bad update lands. The machine is supposed to be standing in the other copy of itself, the one that was still good, without a person remembering the ritual. That flip is a move in the catalogue, signed, checked against the steward's conditions, and only committed after the machine looks alive. If it does not look alive, the move never becomes the boot you are standing on.
-
-You should not have to be the administrator of any of this unless you want to be. The steward of a machine may change that machine — install, configure, reshape — only inside conditions you can check, and only so the result is reconstructible. The steward is not a character in the room. The buddy is the presence. The steward is the janitor you do not see.
+Which disk. Which address the holo had yesterday. Whether the application is a web page or not. Whether the rules tool and Vikett are one program or two. You should know that saying a thing either does a thing the place already allowed, or does nothing, and that an application which misbehaves can ruin only the volume it was given, and not even that, if the moment before it is still in the holo.

@@ -1,65 +1,43 @@
 # Path
 
-The web does not need to be built from the bottom in a straight line, and it must not be built from the glass inward. Identity is the piece every other component already pretends exists. Join that first. Each later join should be visible to a person as a feeling, not as a subsystem.
+Arachne is a concept. The order below is the order the concept stops being handwaving. It is not a build schedule for the existing repositories, and it does not pull in work that is outside HoloFS, Harmonics, GlassSpear, Vikett, and the rules tool that still has to be defined.
 
-This is an order of *agreements*, not a promise about repositories or kernels.
+## 1. The claim, on paper, then in the rules tool
 
-## 1. One record
+Write the claim slots and the minimum catalogue: bind user space, bind application space, project a named slice, refuse everything else. Implement the tool only far enough that it can prune that catalogue from a fake proof and a place, and that its only walk is a call HoloFS could honor. Do not start by connecting GlassSpear.
 
-Carrier, BuckyBoi, and GlassSpear all need to mean the same person.
+**Done when** a guest proof cannot produce a user-space bind, a resident proof can, and an application id cannot produce an OS bind. Silence and deny are both tested. No path strings enter the claim.
 
-Agree the record: address, public key, claims, delegations, a version, a signed time of last proof. Agree that biometrics unlock and never leave as the credential. Agree that a device key is a different object. Agree that a domain policy is not stored inside the person.
+## 2. Three volumes that cannot see each other
 
-Until that record exists, every project will grow a private notion of "user," and the web will feel like several houses.
+On a holo, three classes. OS bound to a machine subject. User bound only after step 1 allows it. Application bound per page id. Mounts are the test: from inside one, the others are not names. Delete keeps the bytes. Forget is a separate walk. A lend and a revoke make the far mount go dark.
 
-**You will know it is done when** the same person can be recognized at a workstation buddy and on a house glass without a second enrollment, and a guest is a policy outcome rather than a Unix account.
+**Done when** an application process with a successful bind cannot read the user volume or the boot volume, including by guessing paths. Quota on the application volume fills only itself.
 
-## 2. An address that resolves
+## 3. Vikett in front of claims
 
-Dialtone should be how that record is found. A site that does not have you presents nothing to type; it is handed an address and it resolves it. MyMesh and Hearth pairing should converge on the pocket vault as the gesture, so a household link and a machine link are not two religions.
+Interaction pages stay Vikett's. Add the single driver that turns a storage-shaped take into a typed claim for the rules tool, and no driver that calls HoloFS directly. Compound utterances stay split. A model, if any, sees live labels only.
 
-Overtone stays off this step. Do not move bulk until the session can say yes or no without it.
+**Done when** a sentence can change a GlassSpear scene only if that scene page exists, and can cause a bind only by handing a claim across, and causes nothing when the claim prunes out.
 
-**You will know it is done when** a machine that has never stored you can fetch your record, apply a local guest policy, and forget the session when you leave.
+## 4. GlassSpear only shows what bound
 
-## 3. A volume per authorization
+A scene's pages are page ids. The surface renders a page after application space binds and not before. Shared pages use the place as subject. Personal pages use the person. Two people at one glass do not share application volumes.
 
-HoloFS already knows volumes, snapshots, lending, and revocation. The join is: when a domain authorizes an application for a person, a volume exists for that pair, and when the authorization ends, the name is gone. Soft delete — the name leaves, the bytes remain until a deliberate forget — is the safety net under bad grants.
+**Done when** pulling the person away drops their mounts and leaves the place scene, and a failed bind leaves a hole in the scene rather than a fallback directory.
 
-Do not block this on a kernel filesystem. A mount that enforces the volume boundary is enough to learn whether the feeling is right.
+## 5. Harmonics as source, not as permission
 
-**You will know it is done when** an application cannot see a file it was not granted, the refusal comes from the volume, and undoing a delete is stepping back to a moment rather than restoring a backup.
+Dialtone resolves a person address and a holo address. Overtone fetches content for a claim whose source is remote, only after the rules tool has already allowed the walk. No Dialtone, no remote bind, local binds unchanged. A cache hit in Overtone is not a mount.
 
-## 4. Pages for the web, not only the desktop
+**Done when** a volume on another site appears on a glass only if the claim, the session, and the holo bind all succeeded, and revoking the claim closes the session.
 
-Vikett's catalogue is the control plane. Extend the *kind* of page, not the cleverness of the referee: scenes, application moves, volume lends, household acts, steward acts. Keep the list short. Prune with the record from step 1 and the policy from step 2. Walk against the volume from step 3.
+## 6. OS moments
 
-The referee stays a chooser among live labels. If paraphrase needs a model, it is a decision model. It never sees a socket it could write a command into.
+Maintenance pages prepare, commit, and abandon a second boot moment in OS space. The device key gates them. Applications and ordinary resident sessions do not see the pages.
 
-**You will know it is done when** "open this, on that glass" is two takes or silence, and a guest's catalogue physically does not contain mail, root, or update.
+**Done when** a bad commit returns the machine to the previous moment, and the content of that moment was not writable by any application volume.
 
-## 5. A clock good enough for leases
+## What this concept is not waiting on
 
-Gossip time among trusted peers, then presence leases. One live place. Implausible jumps degrade or escalate. Offline proof still works and is narrower when it is old. Social copies are the fallback for a dark home strand, with a version so staleness is visible.
-
-**You will know it is done when** being in two places at once is uncomfortable for the system in the way it is impossible for a person, and a dead network does not mean you cease to be you.
-
-## 6. The quiet slot
-
-Only then the update and recovery path: two boot slots, a signed moment fetched because a steward page said so, a health check, a return to the previous moment if the new one is sick. The steward's freedom stays inside checkable conditions. Its buttons are pages, not a private channel.
-
-**You will know it is done when** a bad system update returns you to the previous boot without a ritual, and a person who is not the maintainer never saw the button.
-
-## What waits
-
-| Wait | Why it can wait |
-| --- | --- |
-| HoloFS in the kernel | The experience is the volume boundary and the holo's survival, not the address space the mount lives in. |
-| Automatic policy from arbitrary source trees | You cannot honestly derive a lock from source alone. Author specs for what you ship; learn only where you will review the merge. |
-| Process migration between rooms | Scenes and volumes already move the part a person notices. |
-| A global account | It is the thing the path is designed to avoid. |
-| Making the steward a voice in the room | Presence and privilege are different jobs. BuckyBoi speaks. AIOS does not perform. |
-
-## How to tell the path is the web
-
-You can turn the house off except the thing in your pocket, walk into a place that has never enrolled you, be a guest without an account, come home, and find the deleted name gone and the moment before it still there. At no point did you pick a server, a container runtime, or a login. The strands did.
+A kernel filesystem. Any other presence, policy, or admin project. Arachne is true or false on the six steps above.

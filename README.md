@@ -2,110 +2,85 @@
 
 A web of compute, spun around a person.
 
-You do not log into machines. You arrive. A kitchen screen, a laptop on a train, a work building, a friend's house, a disk in a pocket — these are not separate systems with separate accounts. They are strands. Whichever strand you are touching becomes your place for as long as you are there, and only as far as that place is willing to let you.
+Arachne is a concept for an operating environment. It is not a kernel, not a distribution, and not an integration plan for every adjacent experiment. Four existing efforts are the base, and one tool that does not exist yet is the lock between them.
 
-Arachne is the name for that experience, and for the agreement about how the pieces already underway become one system. It is not a new kernel, not a distro, and not a rewrite of those pieces. [HoloFS](https://github.com/jtwolfe/holofs) is still the storage. [Harmonics](https://github.com/jtwolfe/harmonics) is still the internetwork. [GlassSpear](https://github.com/jtwolfe/GlassSpear) is still the house. [Carrier](https://github.com/jtwolfe/carrier) is still what you carry. [BuckyBoi](https://github.com/jtwolfe/buckyboi) still notices you. [Vikett](https://github.com/jtwolfe/vikett) still refuses to invent a command. [AIOS](https://github.com/jtwolfe/AIOS) still keeps a machine reconstructible. Arachne says what they are *for* when a person moves through them.
+| Piece | What it is in Arachne |
+| --- | --- |
+| **[HoloFS](https://github.com/jtwolfe/holofs)** | Storage. A holo: disks join and leave, content keeps its name. OS space, user space, and application space are volumes on that holo, isolated the way a claim isolates storage, not the way a shared home directory hopes. |
+| **[Harmonics](https://github.com/jtwolfe/harmonics)** | Reach. Dialtone connects a *who*. Overtone moves bytes only when asked, and never sits in the packet path. |
+| **[GlassSpear](https://github.com/jtwolfe/GlassSpear)** | Attention. Surfaces show scenes. A house that knows who is there is the interface. Desktop management disappears on environmental computers. |
+| **[Vikett](https://github.com/jtwolfe/vikett)** | Action. Legal moves are authored pages. The live world prunes them. A referee takes one, or stays silent. Nothing invents a command. |
+| **Identity and rules** | Not defined yet. The tool that decides whether a storage claim, a scene, or a move is allowed. Its shape is Vikett's: a catalogue, a prune, a typed take, a walk, silence. It is not Vikett itself. |
 
-The name is the weaver. The web is not a network diagram. It is the feeling that compute, storage, and attention are already around you, and that walking into a room is enough.
+A person may carry the proof that opens a session. [Carrier](https://github.com/jtwolfe/carrier) is one way to hold that proof. Arachne does not depend on it. Any carry that can present an address and unlock a key satisfies the concept.
 
-## What it feels like
+## The feeling
 
-Morning. You walk into the kitchen. The glass there was showing the house — weather, the timer, whoever else is home. It does not ask you to sign in. It already has a fresh enough sense of you, from the person you carry and from the fact that you were in this house minutes ago. Your page replaces the house page on the screen nearest you. The other screens stay shared. You did not open an app. A scene arrived.
+You walk into a room. GlassSpear already treats that room as surfaces and scenes, not as a desktop you have to drive. The identity tool — whatever it becomes — checks a proof against the rules of *this* place. It does not create an account.
 
-You sit at the workstation. The overlay buddy turns because it saw you, not because you clicked a login. Listening is gated. A stranger in the chair gets silence.
+If the rules allow it, HoloFS binds storage and nothing else:
 
-You say something ordinary: open the thing you were writing, and put it on the second glass. That is not a generated shell command. It is two legal moves from a catalogue the system already authored, pruned to what you are allowed to do in this room, chosen, then walked. If the sentence does not match a move, nothing happens. Silence is a result.
+- The machine is running from **OS space**. You cannot see it, and an application cannot write it.
+- Your documents live in **user space**. Applications do not receive that volume.
+- The page that just appeared gets **application space**: its own volume, the way a workload gets its own claim, plus only the extra binds the rules explicitly walked.
 
-Later you are in a building that has never seen you. You do not create an account. You present an address. The building reads the record that address points at — your key, your claims — and applies *its* policy, not yours. Guest. No root. Shared surfaces only. A person who works there presents the same kind of proof and is recognized as staff, because the building's policy says so. A maintainer from outside might hold a time-boxed claim. Your identity did not change between the three. The building's authority did the sorting.
+You say something ordinary. Vikett maps it to pages that exist. Two intents are two takes. A sentence that matches nothing is silence. Harmonics is why the volume you just bound might not be on the disk under the glass: Dialtone finds the who that holds it, and Overtone carries the bytes if the session already said yes.
 
-On the train the network is gone. The record you carry is signed, so the laptop can still check it. A live look or voice unlocks the key that actually matters; the biometric is not the identity. The session is narrower than it would be at home, because the laptop cannot ask your home node whether the record is still fresh. When you are back on a strand that can reach home, the lease and the claims catch up.
+You leave. Mounts drop. Names you deleted are gone from the tree. The bytes remain in the holo until a rule says to forget them. OS space was never in the session.
 
-You delete a file. The name disappears. The bytes do not. The holo remembers the moment before the mistake.
-
-None of that requires the person to know which machine holds the bytes, which protocol punched the NAT, or which policy file said yes. Those are the web's problems. The person's problem is to be present.
-
-## The shape
-
-Four things have always been required for work to run: **compute**, **storage**, **network**, and the live **state** that dies when a node dies. Arachne does not replace that. It refuses to make you administer it.
-
-Under those four sits one spine: **identity**. Not an account on each box. A record you can prove, that any strand can verify, that no strand is allowed to rewrite.
-
-| Layer | What a person experiences | What actually does it |
-| --- | --- | --- |
-| Presence | The room, the buddy, the phone know you are here | BuckyBoi, GlassSpear, the phone pane |
-| Carry | You can leave every device powered off and still be you | Carrier |
-| Authority | This place decides what *you* may do *here* | The site's policy, checked against your claims |
-| Attention | Scenes, not window management | GlassSpear, and Vikett choosing the scene |
-| Action | Only moves that were authored in advance | Vikett |
-| Files | Plug a disk, capacity grows; unplug one, the holo continues | HoloFS |
-| Reach | Names stay when addresses die | Dialtone, with Overtone beside it, not inside it |
-| Household | The mesh follows the people, including the ones who are not the admin | Hearth, MyMesh |
-| The box itself | The machine heals, updates, and stays explainable | AIOS, with update and recovery as signed moves |
+## How a session is assembled
 
 ```text
-you arrive
-    │
-    ▼
-Carrier proves a person · the device proves a machine
-    │
-    ▼
-Dialtone finds the record · HoloFS holds it
-    │
-    ├─ site policy: guest / staff / owner / maintainer
-    │
-    ▼
-Vikett prunes the catalogue and takes one move
-    │
-    ├─ GlassSpear walks a scene onto a surface
-    ├─ an application walks inside its own volume
-    └─ the steward walks a heal, an update, a rollback
+proof of a person
+        │
+        ▼
+identity and rules tool          ← not built; Vikett-shaped
+catalogue × place × claims
+        │
+        ├─ refuse or stay silent
+        │
+        ▼
+HoloFS binds only the claims that passed
+        │
+        ├─ OS space        machine only, already mounted to boot
+        ├─ user space      the person, not their applications
+        └─ application space
+                one volume per granted application
+        │
+        ▼
+GlassSpear places pages on the surfaces this person may see
+        │
+        ▼
+Vikett takes further moves (scene, app action, lend, snapshot)
+        │
+        ▼
+if bytes must move between sites
+        Dialtone decides the session
+        Overtone moves the content
 ```
 
-## What Arachne is not
+The identity tool is in front of HoloFS on purpose. A volume is not a folder you chmod after the fact. It does not exist in a namespace until a rule has walked a claim. GlassSpear does not mount disks. Vikett does not invent grants. Harmonics does not decide policy. HoloFS does not decide who you are. Each one refuses the job that belongs to another.
+
+## What this is not
 
 | It is not | Because |
 | --- | --- |
-| A login screen with a nicer font | Arrival is the interface. Accounts are a fallback for places that do not know you yet. |
-| A container platform | An application is privileged by a signed specification, not trusted because it sits in a box. The volume enforces the grant. |
-| A chatbot that runs the house | Models may *choose* among authored moves. They do not invent commands, paths, or policy. |
-| One global identity provider | Each home, each building, each person's own machines is its own authority. Identity travels. Authority does not. |
-| A new kernel on day one | The experience has to be true on a normal Linux machine first. A filesystem in the kernel is a later strengthening, not the entrance. |
-| A memory of you as a person | History exists so files, leases, and machines can be reconstructed. It is not a diary and not a companion. |
+| A login with better chrome | Arrival is GlassSpear doing its job after a claim succeeds. |
+| A container platform | Isolation is which volumes were bound, checked by rules, enforced by the holo. A box around a process is not the model. |
+| Kubernetes | The claim shape is borrowed so the storage story is familiar. The authorizer is not RBAC, and the cluster is not the product. |
+| A model that runs the house | Vikett, and the rules tool after it, only choose among pages a person authored. |
+| One identity provider | A place applies its rules to a record it can verify. It does not own the record. |
 
-## The pieces
+## Read
 
-Each of these already has a life of its own. Arachne only says how they meet.
-
-| Piece | Role in the web | Where it lives |
-| --- | --- | --- |
-| **HoloFS** | The durable web. Disks join and leave. Names point at content. Deleting a name is not destroying the past. | [holofs](https://github.com/jtwolfe/holofs) (private) |
-| **Harmonics** | Dialtone connects. Overtone carries bytes when asked. The packet path stays dumb. | [harmonics](https://github.com/jtwolfe/harmonics) (private) |
-| **MyMesh** | Machines you have personally linked: a shell, a file, a tunnel, without a port forward. | [MyMesh](https://github.com/jtwolfe/MyMesh) |
-| **Hearth** | A household on that kind of mesh. Time, presence of a person at a machine, a parent's hand, an update pushed to a child system. | [hearth](https://github.com/jtwolfe/hearth) |
-| **Carrier** | The thing in your pocket that can prove you when every other device is off. Pairing, claims, a continuity pack. Not the house, and not a mesh node. | [carrier](https://github.com/jtwolfe/carrier) (private) |
-| **GlassSpear** | Surfaces in a place. Scenes instead of desktops. Presence is the UI. | [GlassSpear](https://github.com/jtwolfe/GlassSpear) (private) |
-| **glass** | The phone as a surface you hold, not a screen on the wall. | [glass](https://github.com/jtwolfe/glass) |
-| **BuckyBoi** | On a machine that still has windows: a presence that can tell people apart and can refuse to listen. | [buckyboi](https://github.com/jtwolfe/buckyboi) |
-| **Vikett** | The catalogue of legal moves. Prune, choose, walk, or stay silent. | [vikett](https://github.com/jtwolfe/vikett) |
-| **AIOS** | The steward of a single machine. Freedom to change it, inside conditions a human can check. | [AIOS](https://github.com/jtwolfe/AIOS) |
-
-Dearr stays a library on top of storage. It is a client. It is never the mesh.
-
-## Read this as a path
-
-| If you want | Go to |
+| | |
 | --- | --- |
-| A day in the web, without architecture | [docs/EXPERIENCE.md](docs/EXPERIENCE.md) |
-| Who you are, in more than one place | [docs/IDENTITY.md](docs/IDENTITY.md) |
-| Where bytes live, and why a delete is not a delete | [docs/HOLOFS.md](docs/HOLOFS.md) |
-| How a name finds a machine | [docs/NETWORK.md](docs/NETWORK.md) |
-| Rooms, buddies, and the phone | [docs/SURFACES.md](docs/SURFACES.md) |
-| How an application is allowed to act | [docs/CONTROL.md](docs/CONTROL.md) |
-| Time, live state, updates, and the steward | [docs/CONTINUITY.md](docs/CONTINUITY.md) |
-| What to join up, and in what order | [docs/PATH.md](docs/PATH.md) |
-
-## A note on ambition
-
-The closest systems in the world each solved a slice. Phones sandbox applications and update themselves in pairs of slots. Some desktops isolate work into separate machines and pass resources through a slot. Content-addressed storage, snapshots, and self-sovereign credentials all exist. None of them made identity the spine and then hung storage, rooms, and legal action off that spine so that walking in is the whole interface.
-
-That is the goal. The sci-fi is not a new gadget. It is the absence of the login.
+| A day, as a person | [docs/EXPERIENCE.md](docs/EXPERIENCE.md) |
+| OS, user, and application space | [docs/SPACES.md](docs/SPACES.md) |
+| HoloFS as the substrate | [docs/HOLOFS.md](docs/HOLOFS.md) |
+| Dialtone and Overtone | [docs/NETWORK.md](docs/NETWORK.md) |
+| GlassSpear | [docs/SURFACES.md](docs/SURFACES.md) |
+| Vikett, and the rules tool that does not exist yet | [docs/CONTROL.md](docs/CONTROL.md) |
+| Who the proof is | [docs/IDENTITY.md](docs/IDENTITY.md) |
+| Leases, deletes, boots, return | [docs/CONTINUITY.md](docs/CONTINUITY.md) |
+| What has to be true, in order | [docs/PATH.md](docs/PATH.md) |

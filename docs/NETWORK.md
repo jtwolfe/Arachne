@@ -1,53 +1,55 @@
-# Network
+# Harmonics
 
-The web has to find people and machines without freezing their addresses into the name. Locations die. NATs change. A laptop goes to school. A disk walks to another room. The name should still mean the same thing.
+Harmonics is how Arachne reaches. Names stay. Locators die. A glass, a desk, and a holo full of disks are not required to share a subnet for a claim to be real.
 
-That problem already has a direction: **names stay, locators die.**
+Two parts, and they do not overlap:
 
-## Dialtone and Overtone
+| | Job | Not its job |
+| --- | --- | --- |
+| **Dialtone** | Connection. Identity-addressed sessions. A who, a proof, an optional path onto a local interface, a way to name something that moves. | Storage policy. Scenes. Deciding a claim. Carrying bulk as a side effect of being connected. |
+| **Overtone** | Transmission. Content asked for by name, cached because it was asked for, dumb on purpose. | The packet path. Identity. Knowing what the bytes mean. |
 
-Harmonics is the personal internetwork.
+Arachne is a concept project. It does not specify Harmonics' wire. It specifies the moments where Arachne is allowed to call one or the other.
 
-**Dialtone** is connection. Identity, session, the possibility of a name that resolves to whoever is currently able to answer for it. You do not dial an IP and hope. You dial a who. The who might be your holo, a surface in the house, a machine you linked, a building that is willing to fetch your record.
+## Dialtone in a session
 
-**Overtone** is transmission. Bulk bytes, caches, content that can be fetched because you asked for that content. It is allowed to exist only because it is not in the packet path. The session must not depend on a cache being clever. A cache that understands your life is a surveillance point. A cache that stores what it was handed, addressed by content, is a wheelbarrow.
+Every subject that can be reached has an address: a person, a machine, a holo that can answer for a volume. Dialtone resolves the address to whatever is currently able to speak for it. IP addresses, room numbers, and "the server in the cupboard" are locators. They can change without the address changing.
 
-Arachne uses Dialtone as the way identity addresses are resolved and as the way a site fetches a record it does not store. It uses Overtone when a volume, a snapshot, or an update is large enough that "open a session and drip the bytes through the control channel" would be the wrong shape. Control and cargo stay different.
+The identity tool uses Dialtone in three places:
 
-## Machines you have linked
+1. **Fetch a record.** A place that has never stored you is handed an address. Dialtone finds a who that can serve the record. The rules tool checks the signature and applies local rules. Dialtone does not cache the record into OS space "for next time" unless a claim of that shape exists and was walked. A convenience cache of identity is a second source of truth.
+2. **Open a session to a holo that is not local.** User space or a lent volume may live on members elsewhere. The claim's source says so. Dialtone is the session. It is not permission. If the rules tool has not walked the claim, there is no session to open, even if Dialtone could find the peer.
+3. **Name a machine to itself and to other machines in the place.** The OS has a device identity, distinct from any person. Maintenance claims, health, and "where is the other boot moment being prepared" are conversations between whos, not between user accounts.
 
-MyMesh is the practical mesh for machines you explicitly trust: pair once, then a shell, a file copy, a tunnel to a service, a name that is yours rather than a public DNS name. It is not a VPN product and it is not the whole internetwork. It is the feeling of *my machines can reach each other because I said so*, including from behind the kinds of networks that do not take port forwards.
+When the network is gone, Dialtone is gone. Local binds against a holo whose members are in the machine still work. Remote sources do not. A signed record already in hand can still be checked, and the rules tool narrows the session because it could not refresh. Absence of Dialtone is a prune input, not a crash.
 
-Hearth is that feeling with a household policy on it. A child's system paired at home still answers from school. A parent can see that they are there, how long the machine has been in use, and which application has focus — not a screenshot, not a keylog — and can grant time, lock, or push an update. The child machine enforces the last policy it was given even if the parent cannot be reached. Leaving the household is an explicit release, not a daemon the child is expected to kill.
+## Overtone in a session
 
-In Arachne these are domains running on the personal internetwork:
+Overtone moves content that is already allowed to move.
 
-- MyMesh is "machines in *my* domain that I linked."
-- Hearth is "people in a household domain, including people who are not the administrator."
-- A building you visit is a domain you did not link, which can still talk to your Dialtone address without becoming a member of your mesh.
+- A snapshot authorized as a source.
+- A volume whose claim says the bytes may be replicated to this site.
+- An OS moment being prepared on the quiet slot, fetched as content, verified, then handed to HoloFS as a source. The fetch is not the commit. The commit is a maintenance page.
 
-They should not grow three pairing ceremonies and three notions of device identity. Carrier is already the pair you hold up. The path is one pairing gesture, and different policies after the link exists.
+Overtone stores what it was given, addressed by content. It does not learn directories, people, or policy. It is not in the path of Dialtone packets. A session must succeed with Overtone dark; it will merely be unable to complete claims whose source is bulk content elsewhere. Those claims fail closed. They do not fall back to tunneling someone's user space through the control channel.
 
-## What crosses, and what does not
+A place that can see Overtone content still cannot mount it. Possession of bytes is not a bind. The rules tool walks a claim, HoloFS unwraps only if the key and the claim agree, and only then does a mount exist. Encrypted content sitting in a cache is not user space.
 
-A session carries proof and small claims. A volume's contents move when a grant says they may, and they move as content, not as "the user's home directory, live, over the wire." Continuity on a visit is a pack, not NFS of your life onto a glass you do not own.
+## What never goes on the wire by default
 
-Presence hints — who is near a surface — stay local to the place unless a policy you can read says otherwise. A building does not get a feed of your face. It gets a proof you chose to present, and then only the pages its policy allows.
+| Stays local unless a page says otherwise | Why |
+| --- | --- |
+| Raw presence (whatever GlassSpear used to decide who is at a surface) | The outward claim is "this subject, here, now," if it needs to leave at all. |
+| OS space | Another site does not boot your machine by mounting your root. An OS moment is copied only as a maintenance source for *this* machine's quiet slot. |
+| The full user volume | Visits get claims, not a live mirror. A projection or a lend is a page. |
+| Application volumes of a person | They follow the person only when a new session rebinds them through a claim, at a place whose rules allow that application. |
 
-Relays, when a direct path is impossible, forward encrypted packets. They are not a directory of your files and not a home for your record. If the only way a strand works is by trusting a relay with plaintext, that strand is not done.
+## How the four base pieces meet on the wire
 
-## Finding the record
+GlassSpear wants a personal page on a surface. Vikett has already taken "show this page" or the scene change that implied it. The rules tool builds an application-space claim. The volume is local: HoloFS binds, Harmonics is idle. The volume is remote: the rules tool asks Dialtone for a session to the address in the claim source, then asks Overtone for the content the claim named, then asks HoloFS to bind what arrived. If Dialtone fails, the page does not appear half-loaded from leftover cache. If Overtone fails, same. If HoloFS refuses the bind, the session is closed. No component papers over another's no.
 
-When a site needs your identity record it does not look you up in its user table. The order is:
+A lend to another person is the same shape with a different subject. Dialtone finds them. The wrap is the key HoloFS issued for that claim. Overtone may move a snapshot if the page was "give them a moment," or the far side may read through the session if the page was "let them read while the wrap lives." Revoke is a local HoloFS fact that Dialtone must stop honoring. A peer that keeps talking after revoke is a broken peer, not a policy exception.
 
-1. You present an address (and a fresh proof, if the moment calls for it).
-2. Dialtone resolves that address to a place that can answer.
-3. The record is read from the holo that holds it, or from a social copy if that is all the site can reach.
-4. The site applies its own policy to the claims inside.
-5. Anything large that then has to move — a continuity pack, a volume you lent, an update — may go by Overtone. The decision to allow it already happened on the session.
+## Places
 
-If resolution fails, the site falls back along [IDENTITY.md](IDENTITY.md): signature in hand, then a narrower session, not a new account "so we can let you in this once."
-
-## Household, travel, and the office
-
-The same machine can be in more than one relationship over a day. A laptop at home is in your domain. The same laptop at school is still yours, and if it belongs to a child it is also inside Hearth's rules, which were written to survive exactly that trip. The same person standing at an office glass is inside the office domain for that session only. The laptop in the bag does not become an office machine because you walked into the lobby. Session, device, and domain stay distinct so that "I was at work" does not mean "work now owns my holo."
+A house, a building, and a machine you own are different places with different catalogues. Harmonics does not merge them into one network identity. Your address is yours in all three. The machine's address is the machine's. The place's rules are what decide whether those two addresses, in combination, may bind user space or only stand in a shared scene. Travel is a new session to the same person-address, under a new place's catalogue. It is not a tunnel back to the glass you left, and it is not the remote place mounting your OS space.
